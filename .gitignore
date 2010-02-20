@@ -5,3 +5,4 @@ lib/*
 *.py[co]
 dist/*
 MANIFEST
+docs/_build/*

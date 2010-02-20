@@ -1,0 +1,3 @@
+[submodule "externals/d51.sphinx"]
+	path = externals/d51.sphinx
+	url = git://github.com/domain51/d51.sphinx.git

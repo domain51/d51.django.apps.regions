@@ -16,3 +16,7 @@ def clean():
 def install():
     "Install"
     local("python setup.py install")
+
+def docs(type="html"):
+    "Build documentation"
+    local("cd docs && make %s" % type)
