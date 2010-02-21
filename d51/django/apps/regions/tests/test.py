@@ -32,6 +32,10 @@ class ModelTestCase(TestCase):
         model = self.model_class(name=random_name)
         self.assertEqual(str(model), random_name)
 
+class GeometryModelTestCase(ModelTestCase):
+    def test_has_proper_geometry(self):
+        model = self.model_class()
+        self.assertHasField(model, 'geometry', self.expected_geometry)
 
 class Client(test.client.Client):
     pass

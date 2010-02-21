@@ -16,16 +16,11 @@ class TestOfRegion(test.ModelTestCase):
         self.assertFieldIsOptional(region, 'parent')
         self.assertRelatesTo(region, 'parent', models.Region)
 
-class TestOfPoint(test.ModelTestCase):
+class TestOfPoint(test.GeometryModelTestCase):
     model_class = models.Point
+    expected_geometry = django_models.PointField
 
-    def test_has_a_geometry_field_that_is_a_point(self):
-        point = models.Point()
-        self.assertHasField(point, 'geometry', django_models.PointField)
-
-class TestOfPolygon(test.ModelTestCase):
+class TestOfPolygon(test.GeometryModelTestCase):
     model_class = models.Polygon
+    expected_geometry = django_models.PolygonField
 
-    def test_has_a_geometry_field_that_is_a_polygon(self):
-        polygon = models.Polygon()
-        self.assertHasField(polygon, 'geometry', django_models.PolygonField)
