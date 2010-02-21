@@ -1,19 +1,35 @@
 from django.contrib.gis.db import models
 from d51.django.apps.regions import managers
 
-class Point(models.Model):
+class AbstractGeometry(models.Model):
     name = models.CharField(max_length=250)
+
+    class Meta:
+        abstract = True
+
+    def __unicode__(self):
+        return self.name
+
+class Point(AbstractGeometry):
     geometry = models.PointField()
 
-    def __unicode__(self):
-        return self.name
+class MultiPoint(AbstractGeometry):
+    geometry = models.MultiPointField()
 
-class Polygon(models.Model):
-    name = models.CharField(max_length=250)
+class Polygon(AbstractGeometry):
     geometry = models.PolygonField()
 
-    def __unicode__(self):
-        return self.name
+class MultiPolygon(AbstractGeometry):
+    geometry = models.MultiPolygonField()
+
+class LineString(AbstractGeometry):
+    geometry = models.LineStringField()
+
+class MultiLineString(AbstractGeometry):
+    geometry = models.MultiLineStringField()
+
+class GeometryCollection(AbstractGeometry):
+    geometry = models.GeometryCollectionField()
 
 class Region(models.Model):
     name = models.CharField(max_length=250)

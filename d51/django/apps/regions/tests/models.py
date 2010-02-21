@@ -24,3 +24,23 @@ class TestOfPolygon(test.GeometryModelTestCase):
     model_class = models.Polygon
     expected_geometry = django_models.PolygonField
 
+class TestOfMultiPoint(test.GeometryModelTestCase):
+    model_class = models.MultiPoint
+    expected_geometry = django_models.MultiPointField
+
+class TestOfMultiPolygon(test.GeometryModelTestCase):
+    model_class = models.MultiPolygon
+    expected_geometry = django_models.MultiPolygonField
+
+class TestOfLineString(test.GeometryModelTestCase):
+    model_class = models.LineString
+    expected_geometry = django_models.LineStringField
+
+class TestOfMultiLineString(test.GeometryModelTestCase):
+    model_class = models.MultiLineString
+    expected_geometry = django_models.MultiLineStringField
+
+class TestOfGeometryCollection(test.GeometryModelTestCase):
+    model_class = models.GeometryCollection
+    expected_geometry = django_models.GeometryCollectionField
+
