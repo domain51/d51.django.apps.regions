@@ -38,10 +38,7 @@ class Region(models.Model):
     slug = models.SlugField()
     parent = models.ForeignKey('self', blank=True, null=True)
 
-    content_type = models.ForeignKey(
-        generic_models.ContentType,
-        limit_choices_to={'app_label':'regions', 'model__in':('point', 'shape')}
-    )
+    content_type = models.ForeignKey(generic_models.ContentType)
     object_id = models.PositiveIntegerField()
     geometry = generic.GenericForeignKey()
 
