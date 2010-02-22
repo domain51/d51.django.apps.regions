@@ -1,5 +1,6 @@
 from d51.django.apps.regions import models
 from d51.django.apps.regions.tests import test
+from d51.django.apps.regions.tests.support.models import EventForRegionTesting
 from django.contrib.gis import geos
 import random
 
@@ -129,6 +130,43 @@ class TestOfRegion(test.ModelTestCase):
         collection = generate_random_collection()
         region = generate_random_region(geometry=collection)
         self.assertEqual(models.Region.objects.get(pk=region.id).geometry, collection)
+
+class TestOfRegionRelation(test.ModelTestCase):
+    model_class = models.RegionRelation
+
+    def setUp(self):
+        super(TestOfRegionRelation, self).setUp()
+        test.create_model_tables()
+
+    def tearDown(self):
+        super(TestOfRegionRelation, self).tearDown()
+        test.destroy_model_tables()
+
+    def test_ties_a_region_to_another_model(self):
+        point = generate_random_point()
+        region = generate_random_region(geometry=point)
+
+        event = EventForRegionTesting.objects.create(name="foobar")
+        relation = models.RegionRelation.objects.create(
+            region=region,
+            content_object=event
+        )
+
+        self.assertEqual(1, models.RegionRelation.objects.filter(region=region).count())
+
+    def test_can_reach_through_relation(self):
+        point = generate_random_point()
+        region = generate_random_region(geometry=point)
+
+        event = EventForRegionTesting.objects.create(name="foobar")
+        relation = models.RegionRelation.objects.create(
+            region=region,
+            content_object=event
+        )
+
+        events = models.RegionRelation.objects.filter(region=region).return_related()
+        self.assertEqual(1, events.count(), "sanity check")
+        self.assertEqual(event, events[0])
 
 class TestOfPoint(test.GeometryModelTestCase):
     model_class = models.Point
