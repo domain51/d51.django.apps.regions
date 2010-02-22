@@ -11,7 +11,7 @@ def init():
 
 def clean():
     "Remove the cruft created by virtualenv and pip"
-    local("rm -rf bin/ include/ lib/ build/ MANIFEST")
+    local("rm -rf bin/ include/ lib/ build/ src/ dist/ MANIFEST")
 
 def install():
     "Install"
