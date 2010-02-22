@@ -14,25 +14,25 @@ class AbstractGeometry(models.Model):
         return self.name
 
 class Point(AbstractGeometry):
-    geometry = models.PointField()
+    raw = models.PointField()
 
 class MultiPoint(AbstractGeometry):
-    geometry = models.MultiPointField()
+    raw = models.MultiPointField()
 
 class Polygon(AbstractGeometry):
-    geometry = models.PolygonField()
+    raw = models.PolygonField()
 
 class MultiPolygon(AbstractGeometry):
-    geometry = models.MultiPolygonField()
+    raw = models.MultiPolygonField()
 
 class LineString(AbstractGeometry):
-    geometry = models.LineStringField()
+    raw = models.LineStringField()
 
 class MultiLineString(AbstractGeometry):
-    geometry = models.MultiLineStringField()
+    raw = models.MultiLineStringField()
 
 class GeometryCollection(AbstractGeometry):
-    geometry = models.GeometryCollectionField()
+    raw = models.GeometryCollectionField()
 
 class Region(models.Model):
     name = models.CharField(max_length=250)

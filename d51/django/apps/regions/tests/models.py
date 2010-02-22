@@ -10,14 +10,14 @@ def generate_random_poly():
     random_number = random.randint(10, 20)
     return models.Polygon.objects.create(
         name="some random polygon %d" % random_number,
-        geometry=geos.GEOSGeometry('POLYGON (( 10 10, 10 20, 20 20, 20 15, 10 10))')
+        raw=geos.GEOSGeometry('POLYGON (( 10 10, 10 20, 20 20, 20 15, 10 10))')
     )
 
 def generate_random_multipoly():
     random_number = random.randint(10, 20)
     return models.MultiPolygon.objects.create(
         name="some random multipolygon %d" % random_number,
-        geometry=geos.MultiPolygon(
+        raw=geos.MultiPolygon(
             geos.GEOSGeometry('POLYGON (( 10 10, 10 20, 20 20, 20 15, 10 10))'),
             geos.GEOSGeometry('POLYGON (( 10 10, 10 20, 20 20, 20 15, 10 10))')
         )
@@ -27,21 +27,21 @@ def generate_random_poly():
     random_number = random.randint(10, 20)
     return models.Polygon.objects.create(
         name="some random polygon %d" % random_number,
-        geometry=geos.GEOSGeometry('POLYGON (( 10 10, 10 20, 20 20, 20 15, 10 10))')
+        raw=geos.GEOSGeometry('POLYGON (( 10 10, 10 20, 20 20, 20 15, 10 10))')
     )
 
 def generate_random_point():
     random_number = random.randint(10, 20)
     return models.Point.objects.create(
         name="some random geometry %d" % random_number,
-        geometry=geos.Point(random.randint(100, 200), random.randint(100, 200))
+        raw=geos.Point(random.randint(100, 200), random.randint(100, 200))
     )
 
 def generate_random_multipoint():
     random_number = random.randint(10, 20)
     return models.MultiPoint.objects.create(
-        name="some random geometry %d" % random_number,
-        geometry=geos.MultiPoint(
+        name="some random multipoint %d" % random_number,
+        raw=geos.MultiPoint(
             geos.Point(random.randint(100, 200), random.randint(100, 200)),
             geos.Point(random.randint(100, 200), random.randint(100, 200))
         )
@@ -51,14 +51,14 @@ def generate_random_linestring():
     random_number = random.randint(10, 20)
     return models.LineString.objects.create(
         name="some random linestring %d" % random_number,
-        geometry=geos.LineString((random_number, random_number), (random_number+20, random_number+20))
+        raw=geos.LineString((random_number, random_number), (random_number+20, random_number+20))
     )
 
 def generate_random_multilinestring():
     random_number = random.randint(10, 20)
     return models.MultiLineString.objects.create(
         name="some random multilinestring %d" % random_number,
-        geometry=geos.MultiLineString(
+        raw=geos.MultiLineString(
             geos.LineString((random_number, random_number), (random_number+20, random_number+20)),
             geos.LineString((random_number, random_number), (random_number+20, random_number+20))
         )
@@ -68,7 +68,7 @@ def generate_random_collection():
     random_number = random.randint(10, 20)
     return models.GeometryCollection.objects.create(
         name="some random geometrycollection %d" % random_number,
-        geometry=geos.GeometryCollection(
+        raw=geos.GeometryCollection(
             geos.Point(random.randint(100, 200), random.randint(100, 200)),
             geos.LineString((random_number, random_number), (random_number+20, random_number+20)),
             geos.GEOSGeometry('POLYGON (( 10 10, 10 20, 20 20, 20 15, 10 10))')
