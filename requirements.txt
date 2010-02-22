@@ -1,2 +1,3 @@
 Django
 psycopg2
+-e git://github.com/domain51/d51.django.db.models.generic.git#egg=d51.django.db.models.generic
